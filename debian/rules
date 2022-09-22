@@ -1,0 +1,41 @@
+#!/usr/bin/make -f
+
+DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+
+CC      = $(DEB_HOST_GNU_TYPE)-gcc
+
+# we determine the ABI level comes from the SONAME of libssl.so
+# it is used for the Provides: perl-openssl-abi-XX relationship
+# see #848113
+
+debian/openssl-abiversion: debian/get-libssl-abi
+	$< > $@
+	# fail if we could not extract the SONAME
+	[ -s $@ ]
+
+debian/dh_perl_openssl.1: debian/dh_perl_openssl
+	pod2man $< $@
+
+# we build a binary called 'openssl-version' just to be able to generate
+# a libssl* dependency. dh_shlibdeps won't run if nothing is installed
+# in the binary package, so we run dpkg-shlibdeps by hand
+override_dh_shlibdeps:
+	# scanning uninstalled binaries is intentional, please ignore the warning
+	dpkg-shlibdeps -e$(CURDIR)/openssl-version -Tdebian/perl-openssl-defaults.substvars
+
+override_dh_gencontrol: debian/openssl-abiversion
+	dh_gencontrol -- -Vperl-openssl-abi-version=$(shell cat $<)
+
+override_dh_auto_build: debian/perl-openssl.make debian/dh_perl_openssl.1
+	dh_auto_build -- CC=$(CC)
+
+# we don't use anything outside perl-base for ourself;
+# debhelper may but that's not our business
+#
+# note that this currently makes perl:Depends totally empty
+# (as perl-base is Essential:yes)
+override_dh_perl:
+	dh_perl -d
+
+%:
+	dh $@

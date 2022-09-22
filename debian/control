@@ -1,0 +1,43 @@
+Source: perl-openssl-defaults
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: Niko Tyni <ntyni@debian.org>
+Section: perl
+Priority: optional
+Build-Depends: debhelper-compat (= 12),
+               libssl-dev,
+               perl-xs-dev,
+               perl:native
+Standards-Version: 4.5.0
+Vcs-Browser: https://salsa.debian.org/perl-team/modules/packages/perl-openssl-defaults
+Vcs-Git: https://salsa.debian.org/perl-team/modules/packages/perl-openssl-defaults.git
+Rules-Requires-Root: no
+
+Package: perl-openssl-defaults
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         ${perl:Depends},
+         ${shlibs:Depends}
+Breaks: libcrypt-openssl-bignum-perl (<< 0.07-2),
+        libcrypt-openssl-dsa-perl (<< 0.18-2),
+        libcrypt-openssl-pkcs10-perl (<< 0.16-2),
+        libcrypt-openssl-pkcs12-perl (<< 0.7-3),
+        libcrypt-openssl-rsa-perl (<< 0.28-5),
+        libcrypt-openssl-x509-perl (<< 1.8.7-3),
+        libcrypt-smime-perl (<< 0.19-2),
+        libcrypt-ssleay-perl (<< 0.73.04-2),
+        libnet-ssleay-perl (<< 1.78-2)
+Provides: dh-sequence-perl-openssl,
+          perl-openssl-abi-${perl-openssl-abi-version}
+Description: version compatibility baseline for Perl OpenSSL packages
+ A subset of Perl XS module packages expose the OpenSSL binary interface
+ to Perl code. This can lead to incompatibilities if these packages are
+ linked against different versions of OpenSSL.
+ .
+ This package provides a virtual package "perl-openssl-abi-x" that
+ corresponds to the libssl-dev package SONAME it was built against.
+ The packages that need to stay compatible with each other can depend
+ on this.
+ .
+ Tools are also provided for generating this dependency with minimum
+ hassle. See the instructions in README.Debian.

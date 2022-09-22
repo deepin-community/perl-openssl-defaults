@@ -1,0 +1,4 @@
+debian/perl-openssl.make /usr/share/perl-openssl-defaults
+debian/get-libssl-abi    /usr/share/perl-openssl-defaults
+debian/dh_perl_openssl   /usr/bin
+debian/perl_openssl.pm   /usr/share/perl5/Debian/Debhelper/Sequence

@@ -1,0 +1,50 @@
+perl-openssl-defaults (5) unstable; urgency=medium
+
+  * Team upload.
+  * debian/control: update Build-Depends for cross builds.
+  * Mention dh-sequence-perl-openssl in the POD/manpage.
+  * Declare compliance with Debian Policy 4.5.0.
+  * Set Rules-Requires-Root: no.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 16 May 2020 11:46:26 +0200
+
+perl-openssl-defaults (4) unstable; urgency=medium
+
+  [ Salvatore Bonaccorso ]
+  * Update Vcs-* headers for switch to salsa.debian.org
+
+  [ gregor herrmann ]
+  * debian/control: add dh-sequence-perl-openssl to Provides.
+    Supported by debhelper since 11.4.
+
+  [ Debian Janitor ]
+  * Bump debhelper from old 10 to 12.
+  * Set debhelper-compat version in Build-Depends.
+
+  [ Niko Tyni ]
+  * note dh-sequence-perl-openssl usage in README.Debian
+
+ -- Niko Tyni <ntyni@debian.org>  Mon, 03 Feb 2020 13:05:01 +0200
+
+perl-openssl-defaults (3) unstable; urgency=medium
+
+  * Use CPPFLAGS in the build to placate the Debian build log scanner.
+  * Break older versions of the packages that have adopted this scheme,
+    to ensure that partial upgrades pull in a compatible set of packages.
+    (See #848113)
+
+ -- Niko Tyni <ntyni@debian.org>  Sat, 14 Jan 2017 13:10:54 +0200
+
+perl-openssl-defaults (2) unstable; urgency=medium
+
+  * Fix objdump use on platforms like i386 where
+    DEB_HOST_GNU_TYPE != DEB_HOST_MULTIARCH.
+
+ -- Niko Tyni <ntyni@debian.org>  Thu, 22 Dec 2016 22:03:17 +0200
+
+perl-openssl-defaults (1) unstable; urgency=medium
+
+  * Initial release. (Closes: #848932)
+    + thanks to Gregor Herrmann for the reviews
+
+ -- Niko Tyni <ntyni@debian.org>  Thu, 22 Dec 2016 15:32:29 +0200
