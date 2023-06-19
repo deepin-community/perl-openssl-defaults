@@ -1,3 +1,30 @@
+perl-openssl-defaults (7) unstable; urgency=medium
+
+  * Demote debhelper from Recommends to Suggests. The package
+    has a dual nature and I was overlooking the runtime use.
+
+ -- Niko Tyni <ntyni@debian.org>  Mon, 02 May 2022 21:15:29 +0300
+
+perl-openssl-defaults (6) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since stretch:
+    + perl-openssl-defaults: Drop versioned constraint on
+      libcrypt-openssl-bignum-perl, libcrypt-openssl-dsa-perl,
+      libcrypt-openssl-pkcs10-perl, libcrypt-openssl-pkcs12-perl,
+      libcrypt-openssl-rsa-perl, libcrypt-openssl-x509-perl,
+      libcrypt-smime-perl, libcrypt-ssleay-perl and libnet-ssleay-perl in
+      Breaks.
+  * Bump debhelper from old 12 to 13.
+  * Update standards version to 4.6.0, no changes needed.
+
+  [ Niko Tyni ]
+  * dh_perl_openssl: remove trailing newline from substvar
+    (Closes: #1010287)
+  * Recommend debhelper, which is the normal way to use this package.
+
+ -- Niko Tyni <ntyni@debian.org>  Sun, 01 May 2022 21:47:34 +0300
+
 perl-openssl-defaults (5) unstable; urgency=medium
 
   * Team upload.
