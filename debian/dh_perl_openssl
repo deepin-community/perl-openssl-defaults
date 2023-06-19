@@ -12,6 +12,7 @@ my $openssl_abi_level = qx{$cmd};
 
 die("can't extract OpenSSL ABI version with $cmd") if !defined $openssl_abi_level;
 
+chomp $openssl_abi_level;
 for my $package (@{ $dh{DOPACKAGES} }) {
   addsubstvar($package, 'perl:Depends', "perl-openssl-abi-${openssl_abi_level}", undef);
 }
